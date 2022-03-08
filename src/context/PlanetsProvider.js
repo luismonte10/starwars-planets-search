@@ -12,6 +12,13 @@ function PlanetsProvider({ children }) {
 
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
+  // const optons = [
+  //   'population',
+  //   'orbital_period',
+  //   'diameter',
+  //   'rotation_period',
+  //   'surface_water'];
+
   useEffect(() => {
     const getPlanets = async () => {
       const fetchAPI = await fetchPlanetsAPI();

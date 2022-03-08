@@ -10,6 +10,26 @@ function NumericFilters() {
     value: '0',
   });
 
+  let options = [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ];
+
+  const opitionsValidation = () => {
+    if (filterByNumericValues.length !== 0) {
+      filterByNumericValues.forEach((numericFilter) => {
+        options = options.filter((option) => (
+          option !== numericFilter.column
+        ));
+      });
+    }
+
+    return options;
+  };
+
   return (
     <form>
 
@@ -22,11 +42,16 @@ function NumericFilters() {
             ({ target }) => setFilterInfos({ ...filterInfos, column: target.value })
           }
         >
-          <option value="population">population</option>
+          {
+            opitionsValidation().map((columnOption) => (
+              <option key={ columnOption } value={ columnOption }>{columnOption}</option>
+            ))
+          }
+          {/* <option value="population">population</option>
           <option value="orbital_period">orbital_period</option>
           <option value="diameter">diameter</option>
           <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          <option value="surface_water">surface_water</option> */}
         </select>
       </label>
 
